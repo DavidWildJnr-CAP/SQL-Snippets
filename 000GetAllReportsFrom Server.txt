@@ -1,0 +1,24 @@
+﻿#Prerequisites
+#Install-Module -Name ReportingServicesTools
+#------------------------------------------------------
+
+#Lets get security on all folders in a single instance
+#------------------------------------------------------
+#Declare SSRS URI
+#NEEDS TO BE EDITED FOR SPECIFIC SERVER
+$sourceRsUri = 'http://nhslpsql01/ReportServer/ReportService2010.asmx?wsdl'
+
+#Declare Proxy so we dont need to connect with every command
+$proxy = New-RsWebServiceProxy -ReportServerUri $sourceRsUri
+
+#Output ALL Catalog items to file system
+#NEEDS TO BE EDITED FOR SPECIFIC FILE LOCATION
+Out-RsFolderContent -Proxy $proxy -RsFolder / -Destination 'C:\Temp_SSRS_Dump' -Recurse
+
+
+
+
+#THis is seperate 
+#to put them back
+Write-RsFolderContent -ReportServerUri 'http://cicsazvm058/reportserver' -Path C:\Temp_SSRS_Dump2 -Recurse -RsFolder /NHS_Record_Storage
+ 

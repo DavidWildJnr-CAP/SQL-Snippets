@@ -1,0 +1,6 @@
+use master
+go
+Alter database tempdb modify file (name = tempdev, filename = 'E:\Sqldata\tempdb.mdf')
+go
+Alter database tempdb modify file (name = templog, filename = 'E:\Sqldata\templog.ldf')
+go

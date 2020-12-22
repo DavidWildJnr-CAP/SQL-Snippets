@@ -1,0 +1,42 @@
+--Cursor to update Transit boxes 
+--Only usefull for reading records from first to last.
+
+DECLARE	--keep
+
+	@C				AS CURSOR, -- Keep this variable
+	@Variable1	as varchar(20),  -- Replace these vars with your own from here     
+	@Variable2; -- To Here
+	
+
+SET @C = CURSOR FAST_FORWARD FOR  -- Keep
+
+--Put the Select Statement Between Here
+
+SELECT field1,field2
+from [somwhere]
+where [somthing]
+
+--And Here
+
+OPEN @C;  -- Keep This
+
+ 
+--Leave @C alone. Change the other @ vars to match the returned fields above.  IN ORDER
+FETCH NEXT FROM @C INTO @Variable1,@Variable2; 
+
+
+WHILE @@fetch_status = 0  -- Leave
+
+BEGIN --Leave
+
+--Put the update bit or whatever you want to do here.
+
+Update [Somthing]
+where [somthing with the variables]
+	
+--To Here
+  FETCH NEXT FROM @C INTO @Variable1,@Variable2;  -- Put The same variables as the fetch section 
+
+END
+
+--No Need to deallocate cursors as this is a new way of doing it.
